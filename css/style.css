@@ -6,14 +6,17 @@
 body {
   font-family: "Lato", sans-serif;
   font-style: normal;
-  background: #d8cece;
+  background-image: url(/img/devushka_kimono_prazdnik_226077_2560x1600.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
 }
 
 .cart {
   width: 100%;
   max-width: 1600px;
   min-height: 75px;
-  margin: 0 auto;
+  margin: 0 auto 90px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -30,7 +33,6 @@ body {
   padding: 8px 16px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  margin-bottom: 50px;
 }
 
 .cart-button {
@@ -68,6 +70,7 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: 0 auto;
+  background: #d8cece;
 }
 
 .goods-list {

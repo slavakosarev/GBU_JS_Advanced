@@ -5,20 +5,22 @@
 body {
    font-family: "Lato", sans-serif;
    font-style: normal;
-   background: rgb(216, 206, 206);
+   background-image: url(/img/devushka_kimono_prazdnik_226077_2560x1600.jpg);
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 100%;
 }
 .cart {
    width: 100%;
    max-width: 1600px;
    min-height: 75px;
-   margin: 0 auto;
+   margin: 0 auto 90px;
    display: flex;
    align-items: center;
    justify-content: end;
    background: linear-gradient(to right, #800080, #feb9cf);
    padding: 8px 16px;
    box-sizing: border-box;
-   margin-bottom: 50px;
    &-button {
       padding: 10px 16px;
       box-sizing: border-box;
@@ -46,6 +48,7 @@ body {
    padding: 10px 16px;
    box-sizing: border-box;
    margin: 0 auto;
+   background: rgb(216, 206, 206);
    &-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
