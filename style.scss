@@ -8,7 +8,7 @@ body {
    background-image: url(/img/devushka_kimono_prazdnik_226077_2560x1600.jpg);
    background-repeat: no-repeat;
    background-position: center;
-   background-size: 100%;
+   background-size: cover;
 }
 .cart {
    width: 100%;
@@ -49,6 +49,7 @@ body {
    box-sizing: border-box;
    margin: 0 auto;
    background: rgb(216, 206, 206);
+   opacity: 0.75;
    &-list {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
