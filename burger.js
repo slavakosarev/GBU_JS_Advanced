@@ -27,14 +27,15 @@ class Hamburger {
          { topping: 'spices', price: 15, calories: 0 },
          { topping: 'mayonnaise', price: 20, calories: 5 },
       ];
-      for (let i = 0; i < toppList.length; i++) {
-         if (topp === toppList[i].topping) {
-            topp = toppList[i];
-         } else
-            break;
-      }
+      // for (let i = 0; i < toppList.length; i++) {
+      //    if (topp === toppList[i].topping) {
+      //       topp = toppList[i];
+      //    } else
+      //       break;
+      // }
+      topp = toppList.find(elem => elem.topping === topp);
       return topp;
-    }  
+   }  
     // Узнать размер гамбургера
    getSize() {
       let sz = this.size;
@@ -42,12 +43,13 @@ class Hamburger {
          { size: 'big', price: 100, calories: 40 },
          { size: 'small', price: 50, calories:20 }
       ];
-      for (let i = 0; i < sizeList.length; i++) {
-         if (sz === sizeList[i].size) {
-            sz = sizeList[i];
-         } else
-            break;
-      }
+      // for (let i = 0; i < sizeList.length; i++) {
+      //    if (sz === sizeList[i].size) {
+      //       sz = sizeList[i];
+      //    } else
+      //       break;
+      // }
+      sz = sizeList.find(elem => elem.size === sz);
       return sz;
     }  
     // Узнать начинку гамбургера
@@ -58,14 +60,15 @@ class Hamburger {
          { stuffing: 'salad', price: 20, calories: 5 },
          { stuffing: 'potatoes', price: 15, calories: 10 }
       ];
-        for (let i = 0; i < stuffList.length; i++) {
-         if (stf === stuffList[i].stuffing) {
-            stf = stuffList[i];
-         } else
-            break;
-      }
+      //   for (let i = 0; i < stuffList.length; i++) {
+      //    if (stf === stuffList[i].stuffing) {
+      //       stf = stuffList[i];
+      //    } else
+      //       break;
+      // }
+      stf = stuffList.find(elem => elem.stuffing === stf);
       return stf;
-    }  
+   }  
    // Узнать цену
    calculatePrice() {
       let size = this.getSize();
