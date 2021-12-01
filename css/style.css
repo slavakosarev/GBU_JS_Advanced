@@ -9,10 +9,10 @@ body {
   background-image: url(/img/devushka_kimono_prazdnik_226077_2560x1600.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
 }
 
-.cart {
+.heading {
   width: 100%;
   max-width: 1600px;
   min-height: 75px;
@@ -23,9 +23,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   background: -webkit-gradient(linear, left top, right top, from(#800080), to(#feb9cf));
   background: -webkit-linear-gradient(left, #800080, #feb9cf);
   background: -o-linear-gradient(left, #800080, #feb9cf);
@@ -33,9 +33,19 @@ body {
   padding: 8px 16px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  position: relative;
 }
 
-.cart-button {
+.heading input {
+  border-radius: 20px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 10px 6px rgba(13, 17, 237, 0.21);
+          box-shadow: 0px 0px 10px 6px rgba(13, 17, 237, 0.21);
+  border: none;
+}
+
+.cart-button,
+.search-button {
   padding: 10px 16px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -47,19 +57,45 @@ body {
           box-shadow: 0px 0px 10px 6px rgba(13, 17, 237, 0.21);
 }
 
-.cart-button:hover {
-  background: #8c9eff;
+.cart-button:hover,
+.search-button:hover {
+  background: #b7bcd9;
   -webkit-transition: background-color 650ms ease, color 650ms ease;
   -o-transition: background-color 650ms ease, color 650ms ease;
   transition: background-color 650ms ease, color 650ms ease;
   color: white;
 }
 
-.cart-button:active {
+.cart-button:active,
+.search-button:active {
   background: #7a33c3;
   -webkit-box-shadow: 0px 0px 5px 9px rgba(13, 17, 237, 0.21);
           box-shadow: 0px 0px 5px 9px rgba(13, 17, 237, 0.21);
   color: white;
+}
+
+.search-button {
+  position: absolute;
+  top: 25%;
+  left: 15%;
+}
+
+.cart {
+  width: 10%;
+  position: absolute;
+  right: 0%;
+  top: 100%;
+  z-index: 1;
+  background: white;
+  padding: 10px;
+  border: 1px solid #ebebeb;
+  border-radius: 3px;
+  font-size: 14px;
+  display: none;
+}
+
+.active {
+  display: block;
 }
 
 .goods {
@@ -86,5 +122,10 @@ body {
 }
 
 .goods-item {
-  height: 50vh;
+  width: auto;
+  height: auto;
+  background-color: #4b90cb;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
 }
