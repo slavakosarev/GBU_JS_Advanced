@@ -4,41 +4,45 @@ const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-sto
 const $searchInput = document.querySelector('.goods-search');
 const $searchBtn = document.querySelector('.search-button');
 
-function send(onError, onSuccess, url, method = 'GET', data = null, headers = [], timeout = 60000) {
-    let xhr;
-    // Для отправки запросов на сервер в браузер встроен объект XMLHttpRequest
-  if (window.XMLHttpRequest) {
-    // Chrome, Mozilla, Opera, Safari
-      xhr = new XMLHttpRequest();
-  }  else if (window.ActiveXObject) { 
-    // Internet Explorer
-      xhr = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    // Чтобы определить, куда отправить запрос, используется метод `.open()`
-    // Первый параметр - тип запроса
-    // Второй параметр - адрес ресурса
-    // Третий параметр - указатель асинхронности
-  xhr.open(method, url, true);
-    headers.forEach((header) => {
-      // При отправке запроса можно выставить заголовки. 
-      // Заголовки содержат служебную информацию, чтобы серверу было проще обработать запрос
-      xhr.setRequestHeader(header.key, header.value);
-  })
-    // У каждого запроса можно определить таймаут – время, в течение которого мы ждём ответ
-    xhr.timeout = timeout;
-    // Функция чтобы поймать момент, когда ответ от сервера получен
-    // Код внутри выполнится после получения ответа
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status >= 400) {
-          onError(xhr.statusText)
-        } else {
-          onSuccess(xhr.responseText)
+// ! альтернативный способ запросов на сервер
+// https://github.com/ccoenraets/es6-tutorial-data/blob/step3/js/app.js 
+function send(url, method = 'GET', data = null, headers = [], timeout = 60000) {
+    return new Promise((resolve, reject) => {
+        let xhr;
+        // Для отправки запросов на сервер в браузер встроен объект XMLHttpRequest
+        if (window.XMLHttpRequest) {
+            // Chrome, Mozilla, Opera, Safari
+            xhr = new XMLHttpRequest();
+        }  else if (window.ActiveXObject) { 
+            // Internet Explorer
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        // Чтобы определить, куда отправить запрос, используется метод `.open()`
+        // Первый параметр - тип запроса
+        // Второй параметр - адрес ресурса
+        // Третий параметр - указатель асинхронности
+        xhr.open(method, url, true);
+            headers.forEach((header) => {
+            // При отправке запроса можно выставить заголовки. 
+            // Заголовки содержат служебную информацию, чтобы серверу было проще обработать запрос
+            xhr.setRequestHeader(header.key, header.value);
+        })
+            // У каждого запроса можно определить таймаут – время, в течение которого мы ждём ответ
+            xhr.timeout = timeout;
+        // Функция чтобы поймать момент, когда ответ от сервера получен
+        // Код внутри выполнится после получения ответа
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 400) {
+                resolve(xhr.statusText)
+                } else {
+                reject(xhr.responseText)
+                }
+            }
         }
-    }
-    }
-    // Метод `.send()` отправляет запрос
-  xhr.send(data);
+        // Метод `.send()` отправляет запрос
+        xhr.send(data);
+    })
 }
 
 class GoodsItem {
