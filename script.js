@@ -16,7 +16,7 @@ function send(url, method = 'GET', data = null, headers = [], timeout = 60000) {
         }  else if (window.ActiveXObject) { 
             // Internet Explorer
             xhr = new ActiveXObject("Microsoft.XMLHTTP");
-            }
+        }
         // Чтобы определить, куда отправить запрос, используется метод `.open()`
         // Первый параметр - тип запроса
         // Второй параметр - адрес ресурса
@@ -229,5 +229,50 @@ const $textReg = document.querySelector('.text').textContent;
 const regexp = /\B'|'\B/g;
 const $textReg2 = $textReg.replace(regexp, '"');
 document.querySelector('.text').textContent = $textReg2;
+
+const $form = document.querySelector('.form');
+const $name = document.querySelector('#name');
+const $phone = document.querySelector('#phone');
+const $mail = document.querySelector('#mail');
+const $error = document.querySelector('.empty-inputs');
+
+const nameRegexp = /^[A-Za-z]+$/;
+const phoneRegexp = /^\+\d{1}\(\d{3}\)\d{3}-\d{4}$/;
+const mailRegExp = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
+
+$form.addEventListener('submit', event => {
+    if ($name.value === '' && $phone.value === '' && $mail.value === '') {
+        event.preventDefault();
+        $error.innerText = 'Пожалуйста, заполните поля ввода!';
+    }
+    if ($name.value !== '' && nameRegexp.test($name) === false) {
+        event.preventDefault();
+        $name.style.outline = '3px solid red';
+        $name.nextElementSibling.innerText = 'Имя должно содержать только буквы!'
+    }
+    if ($phone.value !== '' && phoneRegexp.test($phone) === false) {
+        event.preventDefault();
+        $phone.style.outline = '3px solid red';
+        $phone.nextElementSibling.innerText = 'Формат ввода +7(000)000-0000';
+    }
+    if ($mail.value !== '' && mailRegExp.test($mail) === false) {
+        event.preventDefault();
+        $mail.style.outline = '3px solid red';
+        $mail.nextElementSibling.innerText = 'Формат ввода E-mail mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru';
+    }
+});
+function checkInputs() {
+    $form.addEventListener('input', event => {
+        const arr = [nameRegexp, phoneRegexp, mailRegExp];
+        arr.forEach(elem => {
+            if (event.target.value !== '' && elem.test(event.target) === true) {
+                event.target.style.removeProperty('outline');
+                event.target.nextElementSibling.innerText = '';
+                $error.innerText = '';
+            }
+        });
+    });
+}
+checkInputs($name, $phone, $mail);
 
 

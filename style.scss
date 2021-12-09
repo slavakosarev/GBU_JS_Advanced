@@ -21,22 +21,25 @@ body {
    input {
       border-radius: 20px;
       padding: 10px;
-      box-shadow: 0px 0px 10px 6px rgba(13, 17, 237, 0.21);
+      box-shadow: 0px 0px 10px 6px rgba(191, 134, 250, 1);
       border: none;
    }
 }
 .cart-button,
 .search-button {
+   display: block;
+   width: 100px;
+   text-align: center;
    padding: 10px 16px;
    box-sizing: border-box;
    text-transform: uppercase;
    background: white;
    border: none;
    border-radius: 20px;
-   box-shadow: 0px 0px 10px 6px rgba(13, 17, 237, 0.21);
+   box-shadow: 0px 0px 10px 6px rgba(191, 134, 250, 1);
    &:hover {
       background: #b7bcd9;
-      transition: background-color 650ms ease, color 650ms ease;
+      transition: background-color 450ms ease, color 650ms ease;
       color: white;
    }
    &:active {
@@ -69,10 +72,10 @@ body {
 .goods {
    width: 100%;
    max-width: 1600px;
-   height: 100vh;
-   padding: 10px 16px;
+   height: 100%;
+   padding: 10px 16px 20px;
    box-sizing: border-box;
-   margin: 0 auto;
+   margin: 0 auto 90px;
    background: rgb(216, 206, 206);
    opacity: 0.75;
    &-list {
@@ -87,17 +90,77 @@ body {
       width: auto;
       height: auto;
       background-color: #4b90cb;
-      border-radius: 5px;
       padding: 10px;
       margin: 10px;
    }
    .text {
       display: block;
       text-align: center;
-      height: 75px;
       font-size: x-large;
       font-style: italic;
       box-shadow: 0px 0px 10px 6px rgba(13, 17, 237, 0.21);
-      padding-top: 25px;
+      padding: 25px 0;
+      margin-bottom: 55px;
+      word-break: break-all;
+   }
+}
+.info {
+   width: 100%;
+   max-width: 1600px;
+   padding: 40px 16px 40px;
+   box-sizing: border-box;
+   margin: 0 auto;
+   background: rgb(146, 158, 230);
+   opacity: 0.75;
+}
+.form {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   align-items: center;
+   width: 30%;
+   margin: 0 auto;
+   input,
+   textarea {
+      width: 100%;
+      font-size: 16px;
+      line-height: 30px;
+      border: 1px solid coral;
+      box-sizing: border-box;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      color: black;
+      text-indent: 10px;
+   }
+   #area {
+      height: 150px;
+      margin-bottom: 40px;
+   }
+   // .error {
+   //    border-color: red;
+   // }
+   .btn {
+      width: 200px;
+      text-align: center;
+      text-transform: uppercase;
+      display: block;
+      padding: 10px 16px;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      background: coral;
+      color: white;
+      border: 1px solid salmon;
+      border-radius: 20px;
+      box-shadow: 0px 0px 10px 6px rgba(109, 23, 198, 1);
+      &:hover {
+         background: #4a4b52;
+         transition: background-color 650ms ease, color 450ms ease;
+         color: white;
+      }
+      &:active {
+         background: rgb(122, 51, 195);
+         box-shadow: 0px 0px 5px 9px rgba(13, 17, 237, 0.21);
+         color: white;
+      }
    }
 }
