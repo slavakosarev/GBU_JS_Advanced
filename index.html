@@ -9,20 +9,43 @@
       rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
    <link rel="stylesheet" href="css/style.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
    <title>eShop</title>
 </head>
 
 <body>
-   <header class="heading">
-      <input type="text" class="goods-search">
-      <button class="search-button" type="button">search</button>
-      <button class="cart-button" type="button">cart</button>
-      <div class="cart"></div>
-   </header>
-   <main class="goods">
-      <div class="goods-list"></div>
-      <div class="text">We exclaimed, "It's so easy!" She answered, 'No, I can't.'</div>
-   </main>
+   <div id="app">
+      <header class="heading">
+         <input type="text" class="goods-search" v-model="searchLine">
+         <button class="search-button" type="button" v-on:click="onSearch">search</button>
+         <button class="cart-button" type="button" v-on:click="onToggleCart">cart</button>
+         <!-- <div class="cart"></div> -->
+         <div class="modal" v-if="inVisibleCart">
+            <span class="close" v-on:click="onToggleCart">x</span>
+            <div class="goods-list">
+               <div class="good-cart" v-for="good of cart" v-bind:key="good.id_product">
+                  <h2>{{ good.product_name }</h2>
+                  <p>{{ good.price }}</p>
+                  <button v-on:click="removeFromCart">x</button>
+               </div>
+            </div>
+         </div>
+      </header>
+      <main class="goods">
+         <div class="goods-list">
+            <template v-if="this.filteredGoods.length > 0">
+               <div class="good-card" v-for="good of filteredGoods" v-bind:key="good.id_product">
+                  <h2 v-on:click="addToCart(good)">{{ good.product_name }}</h2>
+                  <p>{{ good.price }}</p>
+               </div>
+            </template>
+            <template v-else>
+               <h2>The list is empty</h2>
+            </template>
+         </div>
+      </main>
+   </div>
+   <div class="text">We exclaimed, "It's so easy!" She answered, 'No, I can't.'</div>
    <footer class="info">
       <form action="#" class="form">
          <input id="name" type="text" placeholder="Name">
@@ -37,7 +60,8 @@
       </form>
    </footer>
 
-   <script src="script.js"></script>
+   <!-- <script src="script.js"></script> -->
+   <script src="v-script.js"></script>
 
 </body>
 

@@ -78,22 +78,24 @@ body {
   left: 15%;
 }
 
-.cart {
-  width: 10%;
+.modal {
+  width: 600px;
+  height: 400px;
   position: absolute;
-  right: 0%;
   top: 100%;
+  right: 0%;
   z-index: 1;
   background: white;
   padding: 10px;
   border: 1px solid #ebebeb;
   border-radius: 3px;
   font-size: 14px;
-  display: none;
 }
 
-.active {
-  display: block;
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .goods {
@@ -128,8 +130,9 @@ body {
   margin: 10px;
 }
 
-.goods .text {
+.text {
   display: block;
+  color: whitesmoke;
   text-align: center;
   font-size: x-large;
   font-style: italic;
