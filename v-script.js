@@ -9,13 +9,14 @@ new Vue({
       filteredGoods: [],
       cart: [],
       searchLine: '',
-      inVisibleCart: false
+      isVisibleCart: false
    },
    methods: {
       loadGoods() {
          fetch(`${API_URL}catalogData.json`)
-            .then((request) => request.json())
+            .then((request) => request.json()) 
             .then((data) => {
+               console.log(data);
                this.goods = data;
                this.filteredGoods = data;
          })
@@ -27,13 +28,13 @@ new Vue({
       },
       addToCart() {
          fetch(`${API_URL}addToBasket.json`)
-         .then(() => this.cart.push(goods))
+         .then(() => this.cart.push(good))
       },
       removeFromCart(good) {
          fetch(`${API_URL}deleteFromBasket.json`)
             .then(() => {
-               const index = this.cart.findIndex((item) => item.id_product !== good.id_product);
-               this.cart.splice(index, 1)
+               const index = this.cart.findIndex((item) => item.id_product == good.id_product);
+               this.cart.splice(index - 1, 1)
          })
       },
       onSearch() {
@@ -41,7 +42,7 @@ new Vue({
          this.filteredGoods = this.goods.filter((good) => reg.test(good.product_name))
       },
       onToggleCart() {
-         this.inVisibleCart = !this.inVisibleCart
+         this.isVisibleCart = !this.isVisibleCart
       }
    },
    mounted() {

@@ -19,12 +19,11 @@
          <input type="text" class="goods-search" v-model="searchLine">
          <button class="search-button" type="button" v-on:click="onSearch">search</button>
          <button class="cart-button" type="button" v-on:click="onToggleCart">cart</button>
-         <!-- <div class="cart"></div> -->
-         <div class="modal" v-if="inVisibleCart">
-            <span class="close" v-on:click="onToggleCart">x</span>
+         <div class="modal" v-if="isVisibleCart">
+            <span class="close" v-on:click="onToggleCart">X</span>
             <div class="goods-list">
                <div class="good-cart" v-for="good of cart" v-bind:key="good.id_product">
-                  <h2>{{ good.product_name }</h2>
+                  <h2>{{ good.product_name }}</h2>
                   <p>{{ good.price }}</p>
                   <button v-on:click="removeFromCart">x</button>
                </div>
