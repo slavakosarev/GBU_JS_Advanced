@@ -16,32 +16,12 @@
 <body>
    <div id="app">
       <header class="heading">
-         <input type="text" class="goods-search" v-model="searchLine">
-         <button class="search-button" type="button" v-on:click="onSearch">search</button>
+         <search v-on:search="onSearch"></search>
          <button class="cart-button" type="button" v-on:click="onToggleCart">cart</button>
-         <div class="modal" v-if="isVisibleCart">
-            <span class="close" v-on:click="onToggleCart">X</span>
-            <div class="goods-list">
-               <div class="good-cart" v-for="good of cart" v-bind:key="good.id_product">
-                  <h2>{{ good.product_name }}</h2>
-                  <p>{{ good.price }}</p>
-                  <button v-on:click="removeFromCart">x</button>
-               </div>
-            </div>
-         </div>
+         <cart v-if="isVisibleCart" v-bind:list="cart" v-on:delete="removeFromCart" v-on:close="onToggleCart"></cart>
       </header>
       <main class="goods">
-         <div class="goods-list">
-            <template v-if="this.filteredGoods.length > 0">
-               <div class="good-card" v-for="good of filteredGoods" v-bind:key="good.id_product">
-                  <h2 v-on:click="addToCart(good)">{{ good.product_name }}</h2>
-                  <p>{{ good.price }}</p>
-               </div>
-            </template>
-            <template v-else>
-               <h2>The list is empty</h2>
-            </template>
-         </div>
+         <div class="goods-list" v-bind:list="filteredGoods" v-on:add="addToCart"></div>
       </main>
    </div>
    <div class="text">We exclaimed, "It's so easy!" She answered, 'No, I can't.'</div>
@@ -59,7 +39,6 @@
       </form>
    </footer>
 
-   <!-- <script src="script.js"></script> -->
    <script src="v-script.js"></script>
 
 </body>
