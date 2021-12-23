@@ -9,20 +9,38 @@
       rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
    <link rel="stylesheet" href="css/style.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
    <title>eShop</title>
 </head>
 
 <body>
-   <header class="cart">
-      <button class="cart-button" type="button">add to cart</button>
-   </header>
-   <main class="goods">
+   <div id="app">
+      <header class="heading">
+         <search v-on:search="onSearch"></search>
+         <button class="cart-button" type="button" v-on:click="onToggleCart">cart</button>
+         <cart v-if="isVisibleCart" v-bind:list="cart" v-on:delete="removeFromCart" v-on:close="onToggleCart"></cart>
+      </header>
+      <main class="goods">
+         <div class="goods-list" v-bind:list="filteredGoods" v-on:add="addToCart"></div>
+      </main>
+   </div>
+   <div class="text">We exclaimed, "It's so easy!" She answered, 'No, I can't.'</div>
+   <footer class="info">
+      <form action="#" class="form">
+         <input id="name" type="text" placeholder="Name">
+         <span class="error-name"></span>
+         <input id="phone" type="tel" maxlength="17" placeholder="+7(000)000-0000">
+         <span class="error error-number"></span>
+         <input id="mail" type="email" placeholder="mymail@mail.ru">
+         <span class="error error-mail"></span>
+         <textarea id="area">Leave your comment</textarea>
+         <span class="empty-inputs"></span>
+         <button class="btn" type="submit">Submit</button>
+      </form>
+   </footer>
 
-      <div class="goods-list"></div>
+   <script src="v-script.js"></script>
 
-   </main>
-
-   <script src="script.js"></script>
 </body>
 
 </html>
