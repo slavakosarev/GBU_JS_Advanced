@@ -1,11 +1,24 @@
+'use strict';
+/**
+ * Подкючение библиотек с помощью метода require.
+ * Express - веб-фреймворк для Node.js, для создания веб-серверов.
+ * FS-filesystem - встроенный модуль Node.js, облегчает обработку содержания файла.
+ * Path - встроенный модуль Node.js, предоставляет набор функций для работы с путями в файловой системе.
+ */
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
 const port = 5500;
-const catalog_path = path.resolve(__dirname, './data/catalog.json');
-const cart_path = path.resolve(__dirname, './data/cart.json');
-const static_dir = path.resolve(__dirname, './ESHOP/');
+// __dirname - абсолютный путь до текущей директории
+const catalog_path = path.join(__dirname, '/data/catalog.json');
+const cart_path = path.join(__dirname, '/data/cart.json');
+const static_dir = path.join(__dirname);
+
+
+console.log(catalog_path);
+console.log(cart_path);
+console.log(__dirname);
 
 const app = express();
 
@@ -30,7 +43,7 @@ app.post('/addToCart', (req, res) => {
     let cart = JSON.parse(data);
     let id = 1;
 
-    if(cart.length > 0) {
+    if (cart.length > 0) {
       id = cart[cart.length - 1].id + 1;
     }
 
@@ -52,7 +65,7 @@ app.post('/removeFromCart', (req, res) => {
     const itemId = req.body.id;
     const idx = cart.findIndex((good) => good.id == itemId)
 
-    if(idx >= 0) {
+    if (idx >= 0) {
       cart = [...cart.slice(0, idx), ...cart.slice(idx + 1)]
     }
 
@@ -63,6 +76,6 @@ app.post('/removeFromCart', (req, res) => {
   });
 });
 
-app.listen(port, function() {
-  console.log('server is running on port ' + port + '!')
+app.listen(port => {
+  console.log('server is running on port ' + port + '!');
 })

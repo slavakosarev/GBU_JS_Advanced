@@ -1,6 +1,6 @@
 'use strict';
 
-const API_URL = 'http://127.0.0.1:5500/'
+const API_URL = 'http://127.0.0.1:5500/';
 
 Vue.component('good-card', {
   template: `
@@ -39,7 +39,7 @@ Vue.component('goods-list', {
   `,
   props: ['list'],
   methods: {
-     addToCart(good) {
+    addToCart(good) {
       this.$emit('add', good)
     }
   }
@@ -56,9 +56,9 @@ Vue.component('search', {
     return {
       searchString: ''
     }
-  },  
+  },
   methods: {
-    onClick(){
+    onClick() {
       this.$emit('search', this.searchString)
     }
   }
@@ -98,7 +98,7 @@ Vue.component('cart', {
           v-bind:data="good"
           v-on:delete="removeFromCart"
         ></cart-item>
-        <button v-on:click="onClose">Закрыть</button>
+        <button v-on:click="onClose">X</button>
     </div>
   `,
   props: ['list'],
@@ -106,56 +106,56 @@ Vue.component('cart', {
     removeFromCart(good) {
       this.$emit('delete', good)
     },
-    onClose(){
+    onClose() {
       this.$emit('close')
     }
   }
 })
 
 new Vue({
-   el: '#app',
-   data: {
-      goods: [],
-      filteredGoods: [],
-      cart: [],
-      isVisibleCart: false
-   },
-   methods: {
-      loadGoods() {
-         fetch(`${API_URL}catalogData.json`)
-            .then((request) => request.json()) 
-            .then((data) => {
-               console.log(data);
-               this.goods = data;
-               this.filteredGoods = data;
-         })
-      },
-      loadCart() {
-         fetch(`${API_URL}getBasket.json`)
-            .then((request) => request.json())
-            .then((data) => this.cart = data.contents)
-      },
-      addToCart(good) {
-         this.cart.push(good)
-      },
-      removeFromCart(good) {
-         const index = this.cart.findIndex((item) => item.id === good.id);
-         if(index >= 0) {
-            this.cart = [...this.cart.slice(0, index), ...this.cart.slice(index + 1)]
-         }
-      },
-      onSearch() {
-         const reg = new RegExp(this.searchLine, 'i');
-         this.filteredGoods = this.goods.filter((good) => reg.test(good.title))
-      },
-      onToggleCart() {
-         this.isVisibleCart = !this.isVisibleCart
+  el: '#app',
+  data: {
+    goods: [],
+    filteredGoods: [],
+    cart: [],
+    isVisibleCart: false
+  },
+  methods: {
+    loadGoods() {
+      fetch(`${API_URL}catalogData`)
+        .then((request) => request.json())
+        .then((data) => {
+          console.log(data);
+          this.goods = data;
+          this.filteredGoods = data;
+        })
+    },
+    loadCart() {
+      fetch(`${API_URL}cart`)
+        .then((request) => request.json())
+        .then((data) => this.cart = data.contents)
+    },
+    addToCart(good) {
+      this.cart.push(good)
+    },
+    removeFromCart(good) {
+      const index = this.cart.findIndex((item) => item.id === good.id);
+      if (index >= 0) {
+        this.cart = [...this.cart.slice(0, index), ...this.cart.slice(index + 1)]
       }
-   },
-   mounted() {
-      this.loadGoods();
-      this.loadCart()
-   }
+    },
+    onSearch() {
+      const reg = new RegExp(this.searchLine, 'i');
+      this.filteredGoods = this.goods.filter((good) => reg.test(good.title))
+    },
+    onToggleCart() {
+      this.isVisibleCart = !this.isVisibleCart
+    }
+  },
+  mounted() {
+    this.loadGoods();
+    this.loadCart()
+  }
 })
 
 const $textReg = document.querySelector('.text').textContent;

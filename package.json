@@ -1,8 +1,12 @@
 {
+  "dependencies": {
+    "express": "^4.17.2"
+  },
   "name": "eshop",
-  "version": "1.0.0",
   "description": "Project eShop online store",
+  "version": "1.0.0",
   "main": "start.js",
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,13 +14,10 @@
     "type": "git",
     "url": "git+https://github.com/slavakosarev/GBU_JS_Advanced.git"
   },
-  "author": "Slava Kosarev",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/slavakosarev/GBU_JS_Advanced/issues"
   },
-  "homepage": "https://github.com/slavakosarev/GBU_JS_Advanced#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/slavakosarev/GBU_JS_Advanced#readme"
 }

@@ -18,16 +18,6 @@
       <header class="heading">
          <search v-on:search="onSearch"></search>
          <button class="cart-button" type="button" v-on:click="onToggleCart">cart</button>
-         <!-- <div class="modal" v-if="isVisibleCart">
-            <span class="close" v-on:click="onToggleCart">X</span>
-            <div class="goods-list">
-               <div class="good-cart" v-for="good of cart" v-bind:key="good.id_product">
-                  <h2>{{ good.product_name }}</h2>
-                  <p>{{ good.price }}</p>
-                  <button v-on:click="removeFromCart">x</button>
-               </div>
-            </div>
-         </div> -->
          <cart v-if="isVisibleCart" v-bind:list="cart" v-on:delete="removeFromCart" v-on:close="onToggleCart"></cart>
       </header>
       <main class="goods">
@@ -49,7 +39,6 @@
       </form>
    </footer>
 
-   <!-- <script src="script.js"></script> -->
    <script src="v-script.js"></script>
 
 </body>
