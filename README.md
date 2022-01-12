@@ -1,1 +1,0 @@
-Project eShop online store
