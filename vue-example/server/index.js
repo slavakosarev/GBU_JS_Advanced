@@ -2,16 +2,16 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
-const port = 3001
-const catalog_path = path.resolve(__dirname, './data/catalog.json')
-const cart_path = path.resolve(__dirname, './data/cart.json')
-const static_dir = path.resolve(__dirname, '../dist/')
+const port = 3001;
+const catalog_path = path.resolve(__dirname, './data/catalog.json');
+const cart_path = path.resolve(__dirname, './data/cart.json');
+const static_dir = path.resolve(__dirname, '../dist/');
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
-app.use(express.static(static_dir))
+app.use(express.static(static_dir));
 
 app.get('/catalog', (req, res) => {
   fs.readFile(catalog_path, 'utf8', (err, data) => {
@@ -31,7 +31,7 @@ app.post('/cart', (req, res) => {
 
     let id = 1;
 
-    if(cart.length > 0) {
+    if (cart.length > 0) {
       id = cart[cart.length - 1].id + 1;
     }
 
@@ -51,12 +51,12 @@ app.delete('/cart/:id', (req, res) => {
   fs.readFile(cart_path, 'utf8', (err, data) => {
     let cart = JSON.parse(data);
 
-    
+
 
     const itemId = req.params.id;
     const idx = cart.findIndex((good) => good.id == itemId)
 
-    if(idx >= 0) {
+    if (idx >= 0) {
       cart = [...cart.slice(0, idx), ...cart.slice(idx + 1)]
     }
 
@@ -67,6 +67,6 @@ app.delete('/cart/:id', (req, res) => {
   });
 });
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log('server is running on port ' + port + '!')
 })

@@ -14,7 +14,7 @@ export default new Vuex.Store({
   },
   getters: {
     getShowCase(state) {
-      if(state.filterString.length == 0) {
+      if (state.filterString.length == 0) {
         return [...state.showcase]
       }
       const reg = new RegExp(state.filterString, 'gi')
@@ -39,13 +39,13 @@ export default new Vuex.Store({
     },
     removeFromCart(state, id) {
       const idx = state.cart.findIndex((good) => id == good.id)
-      if(idx !== -1) {
+      if (idx !== -1) {
         state.cart = [...state.cart.slice(0, idx), ...state.cart.slice(idx + 1)]
       }
     }
   },
   actions: {
-    fetchShowCase({commit}) {
+    fetchShowCase({ commit }) {
       return fetch(`${API_URL}/catalog`)
         .then((response) => response.json())
         .then((data) => {
@@ -53,17 +53,17 @@ export default new Vuex.Store({
         })
     },
 
-    fetchCart({commit}) {
+    fetchCart({ commit }) {
       return fetch(`${API_URL}/cart`)
         .then((response) => response.json())
         .then((data) => {
-          for(let good of data) {
+          for (let good of data) {
             commit('addToCart', good)
           }
         })
     },
 
-    addToCart({commit}, good) {
+    addToCart({ commit }, good) {
       return fetch(`${API_URL}/cart`, {
         method: 'POST',
         headers: {
@@ -71,21 +71,21 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(good)
       })
-      .then((response) => {
-        if(response.status == 200) {
-          commit('addToCart', good)
-        }
-      })
+        .then((response) => {
+          if (response.status == 200) {
+            commit('addToCart', good)
+          }
+        })
     },
-    removeFromCart({commit}, id) {
+    removeFromCart({ commit }, id) {
       return fetch(`${API_URL}/cart/${id}`, {
         method: 'DELETE'
       })
-      .then((response) => {
-        if(response.status == 200) {
-          commit('removeFromCart', id)
-        }
-      })
+        .then((response) => {
+          if (response.status == 200) {
+            commit('removeFromCart', id)
+          }
+        })
     }
   },
   modules: {
